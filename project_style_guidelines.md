@@ -251,46 +251,22 @@ Sometimes removing code from a class can mean that some imports are no longer ne
 
 All fields should be declared at the top of the file, following these rules:
 
+- Non-public, non-static field names start with m.
+- Static field names start with s.
+- Other fields start with a lower case letter.
+- Public static final fields (constants) are ALL_CAPS_WITH_UNDERSCORES.
 
-- Private, non-static field names should not start with m. This is right:
+For example:
 
-    userSignedIn, userNameText, acceptButton
+	public class MyClass {
+    	public static final int SOME_CONSTANT = 42;
+    	public int publicField;
+    	private static MyClass sSingleton;
+    	int mPackagePrivate;
+    	private int mPrivate;
+    	protected int mProtected;
+	}
 
-Not this:
-
-    mUserSignedIn, mUserNameText, mAcceptButton
-
-
-- Private, static field names do not need to start with an s. This is right:
-
-    someStaticField, userNameText
-
-Not this:
-
-	sSomeStaticField, sUserNameText
-
-
-- All other fields also start with a lower case letter.
-
-
-    int numOfChildren;
-    String username;
-
-
-- Static final fields (known as constants) are ALL_CAPS_WITH_UNDERSCORES.
-
-
-    private static final int PAGE_COUNT = 0;
-
-Field names that do not reveal intention should not be used. For example,
-
-    int e; //number of elements in the list
-
-why not just give the field a meaningful name in the first place, rather than leaving a comment!
-
-    int numberOfElements;
-
-That's much better!
 
 
 #### 2.2.1.2 View Field Naming
